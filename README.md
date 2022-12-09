@@ -10,7 +10,7 @@ yarn start
 
 ## backend
 
-1. 先載 pyenv(https://www.maxlist.xyz/2020/04/01/python-pyenv-virtualenv/)，在pyenv中下載 python3.9.2 的版本 \
+1. 先載 pyenv(https://www.maxlist.xyz/2020/04/01/python-pyenv-virtualenv/ )，在pyenv中下載 python3.9.2 的版本 \
 2. 建置 python3.9 的環境 \
    ```
    cd backend
