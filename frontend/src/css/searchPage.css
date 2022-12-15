@@ -1,0 +1,65 @@
+.resBlock {
+    margin: 2em;
+    display: block;
+    width: 290px;
+    height: 350px;
+    background-color: antiquewhite;
+    border-radius: 10px;
+}
+
+.resBlock:hover {
+    cursor: pointer;
+}
+
+.resImgContainer {
+    width: auto;
+    height: 130px;
+    display: flex;
+    text-align: center;
+}
+
+.resImg {
+    width: 130px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.resInfo {
+    padding: 0.5em;
+    text-align: left;
+    width: 270px;
+    color: black;
+}
+
+.resInfo .title {
+    display: block;
+    justify-content: center;
+    height: auto;
+    flex-direction: column;
+    padding: 2px;
+}
+
+.resInfo .title .name {
+    width: 55%;
+    font-size: 25px;
+    padding: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.resInfo .title .comments {
+    display: flex;
+    justify-content: space-around;
+    margin: 5px;
+}
+
+.resInfo .title .rating {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.starImg {
+    width: 20px
+}
