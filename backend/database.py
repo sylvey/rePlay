@@ -18,8 +18,8 @@ def getSearchApps(keyword):
         "app_image": x["image"], 
         "app_category": x['category'], 
         "app_rating": x['rating'],
-        "positive_keywords": [], 
-        "negative_keywords": [],
+        "advantage": [ keyword.find_one({"_id": ObjectId(y)})["text"] for y in x["advantage"] ],
+        "disadvantage": [ keyword.find_one({"_id": ObjectId(y)})["text"] for y in x["disadvantage"] ]
     } for x in data]
 
     
@@ -30,6 +30,7 @@ def getSearchApps(keyword):
 def getApps():
     db = connect()
     app = db.App
+    keyword = db.Keyword
 
     data = list(app.find({}))
 
@@ -39,34 +40,17 @@ def getApps():
         "app_image": x["image"],
         "app_category": x['category'],
         "app_rating": x['rating'],
-        # positive_keywords
-        # negative_keywords
+        "advantage": [ keyword.find_one({"_id": ObjectId(y)})["text"] for y in x["advantage"] ],
+        "disadvantage": [ keyword.find_one({"_id": ObjectId(y)})["text"] for y in x["disadvantage"] ]
     } for x in data]
 
+    print(returnData[10])
     return returnData
-
-# def getAppsByKeyword(keyword):
-#     db = connect()
-#     app = db.App
-
-#     data = list(app.find({}))
-
-#     returnData = [{
-#         "app_id": str(x["_id"]),
-#         "app_name": x["name"],
-#         "app_image": x["image"],
-#         "app_category": x['category'],
-#         "app_rating": x['rating'],
-#         # positive_keywords
-#         # negative_keywords
-#     } for x in data]
-
-#     print(keyword)
-#     print(returnData[0])
 
 def getAppsContent(app_id):
     db = connect()
     app = db.App
+    keyword = db.Keyword
     app_id = ObjectId(app_id)
 
     data = app.find_one({ '_id': app_id })
@@ -77,7 +61,7 @@ def getAppsContent(app_id):
         'app_image': data['image'], 
         'app_category': data['category'], 
         'rating': data['rating'],
-        # 'keywords': string[],
+        'keywords': [ keyword.find_one({"_id": ObjectId(y)})["text"] for y in data["keyword"] ],
     },
 
     return returnData
