@@ -3,7 +3,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 const Wrapper = styled.div`
-    width: 70%;
+    width: 30%;
     height: 300px;
     background: #eeeeee52;
     border-radius: 20px;
@@ -12,9 +12,6 @@ const Wrapper = styled.div`
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    ${props => props.primary && css`
-        margin-bottom: 0px;
-    `}
 `
 
 const Intro = ({ setClick }) => {

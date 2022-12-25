@@ -1,15 +1,19 @@
 import Title from "../components/Title"
 import Intro from "../components/Intro"
+import Input from "../components/Input";
 import styled from 'styled-components';
 
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   height: 100vh;
   width: 100%;
   margin: auto;
-  align-items: center;
+`
+
+const InputContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
 `
 
 const HomePage = ({ setGoSearch }) => {
@@ -17,7 +21,10 @@ const HomePage = ({ setGoSearch }) => {
     return(
         <Wrapper>
             <Title/>
-            <Intro setClick={setGoSearch}/>
+            <InputContainer>
+                <Intro setClick={setGoSearch}/>
+                <Input/>
+            </InputContainer>
         </Wrapper>
     )
 }
