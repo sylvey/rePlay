@@ -30,11 +30,6 @@ def apps():
     data = getApps()
     return dumps(data)
 
-# @app.route("/apps/<keyword>", methods=["GET"])
-# def appsByKeyword(keyword):
-#     data = getAppsByKeyword(keyword)
-#     return dumps(data)
-
 @app.route("/apps/content/<app_id>")
 def appsContent(app_id):
     data = getAppsContent(app_id)
