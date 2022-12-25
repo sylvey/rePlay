@@ -8,12 +8,13 @@ const Wrapper = styled.div`
     margin-top: 2em;
     position: relative;
     width: 100%;
-    height: 100vh;
+    //height: 100vh;
     padding: 3em;
     overflow-y: auto;
     justify-content: center;
     text-align: center;
     flex-direction: column;
+    align-items: center;
 `
 
 const AppPage = () => {
