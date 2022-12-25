@@ -20,7 +20,7 @@ const AppPage = () => {
         <Wrapper>
             <div className="block">
                 <div className="basic-info">
-                    <p className="name"> GodWaWa </p>
+                    <h5 className="name"> GodWaWa </h5>
                     <img src={img} className='appImg' />
                     <div className="scoreFrame">
                         <p className='number'>App 預測分數</p>

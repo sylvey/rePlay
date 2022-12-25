@@ -34,7 +34,7 @@ const Results = ({ setClickApp }) => {
                             </div>
                             <div className="resInfo">
                                 <div className="title">
-                                    <p className='name'> GodWaWa </p>
+                                    <h5 className='name'> GodWaWa </h5>
                                     <div className="comments">
                                         <Button icon={<LikeOutlined />}></Button>
                                         <Button>正向評論</Button>
