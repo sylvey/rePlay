@@ -5,7 +5,9 @@
     height: 350px;
     flex-direction: column;
     /* background-color: cornflowerblue; */
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
+    background: #eeeeee52;
+    border-radius: 10px;
 }
 
 .basic-info {
@@ -31,7 +33,7 @@
     height: 100px;
     display: flex;
     border-radius: 50%;
-    border: 5px dashed white;
+    border: 5px dashed rgba(0, 0, 0, 0.061);
     color: black;
     align-items: center;
     justify-content: center;
@@ -68,7 +70,7 @@
 .keywords {
     display: block;
     width: 70%;
-    border: 5px dashed white;
+    border: 5px dashed rgba(0, 0, 0, 0.061);
     padding: 10px;
     color: black;
 }

@@ -18,7 +18,7 @@ const Intro = ({ setClick }) => {
 
     return(
         <Wrapper>
-            <h2>我要查詢評價</h2>
+            <h2>我要查詢 APP</h2>
             <p>看上某些 App 但又不確定適不適合自己，先來看看我們基於文字探勘技術對其評價做出的分析吧!</p>
             <Button 
                 type="primary" 

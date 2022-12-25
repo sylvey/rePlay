@@ -17,8 +17,8 @@ const Wrapper = styled.div`
 const InputComment = () => {
     return (
         <Wrapper>
-            <h2>我要做評論預測</h2>
-            <p>想知道某一則評論是屬於哪個 App 的，輸入評論讓我們訓練的模型預測看看！</p>
+            <h2>我要預測APP</h2>
+            <p>想尋找某種特性的APP卻又毫無頭緒，請輸入一段評論讓我們幫你找到最適配的 App！</p>
             <Input.Search
                 placeholder="輸入你的評論"
                 //onSearch={onSearch}
