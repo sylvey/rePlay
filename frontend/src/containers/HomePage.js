@@ -1,7 +1,7 @@
 import Title from "../components/Title"
 import Intro from "../components/Intro"
 import styled from 'styled-components';
-import { useState } from "react";
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   height: 100vh;
   width: 100%;
   margin: auto;
+  align-items: center;
 `
 
 const HomePage = ({ setGoSearch }) => {

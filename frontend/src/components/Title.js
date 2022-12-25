@@ -9,7 +9,7 @@ const Wrapper = styled.h1`
 const Title = () => {
     return(
         <Wrapper>
-            rePlay
+            rePlay 🌟
         </Wrapper>
     )
 }

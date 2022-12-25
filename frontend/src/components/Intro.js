@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
@@ -8,8 +8,13 @@ const Wrapper = styled.div`
     background: #eeeeee52;
     border-radius: 20px;
     margin: 20px;
-    padding: 30px;
-    overflow: auto;
+    padding: 40px;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    ${props => props.primary && css`
+        margin-bottom: 0px;
+    `}
 `
 
 const Intro = ({ setClick }) => {
@@ -17,7 +22,7 @@ const Intro = ({ setClick }) => {
     return(
         <Wrapper>
             <h2>我要查詢評價</h2>
-            <p>看上某些 App 但又不確定適不適和自己，先來看看我們基於文字探勘技術對其評價做出的分析吧!</p>
+            <p>看上某些 App 但又不確定適不適合自己，先來看看我們基於文字探勘技術對其評價做出的分析吧!</p>
             <Button 
                 type="primary" 
                 icon={<SearchOutlined />}

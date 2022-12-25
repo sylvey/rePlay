@@ -15,15 +15,17 @@
     height: 50%;
     justify-content: space-around;
     align-items: center;
-    margin-top: 5px;
+    margin-top: 20px;
 }
 
 .name {
     font-size: 30px;
+    font-family: "Gill Sans", sans-serif;
 }
 
 .appImg {
     width: 170px;
+    border-radius: 10px;
 }
 
 .scoreFrame {
@@ -31,15 +33,15 @@
     height: 100px;
     display: flex;
     border-radius: 50%;
-    border: 5px;
-    border-style: solid;
+    border: 5px dashed white;
     color: black;
     align-items: center;
+    justify-content: center;
 }
 
 .scoreFrame p {
     display: block;
-    font-size: 15px;
+    font-family: "Gill Sans", sans-serif;
 }
 
 .comments {
@@ -47,7 +49,7 @@
     width: 100%;
     height: auto;
     justify-content: space-around;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 
@@ -68,8 +70,7 @@
 .keywords {
     display: block;
     width: 70%;
-    border: 5px;
-    border-style: solid;
+    border: 5px dashed white;
     padding: 10px;
     color: black;
 }

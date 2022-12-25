@@ -46,8 +46,8 @@ const Results = ({ setClickApp }) => {
                                         <Button>負向評論</Button>
                                     </div>
                                     <div className="rating" onClick={() => setClickApp(true)}>
-                                        <p>查看評價</p>
-                                        <img src={starImg} className='starImg'/>
+                                        <p>查看評價🌟</p>
+                                        {/* <img src={starImg} className='starImg'/> */}
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@ const Results = ({ setClickApp }) => {
                     </>
                 ))
             }
-            <Button>下一頁</Button>
+            {/* <Button>下一頁</Button> */}
         </Wrapper>
     )
 }
