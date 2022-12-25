@@ -81,3 +81,23 @@ def getAppsContent(app_id):
     },
 
     return returnData
+
+def getAppAspect(app_id, aspect):
+    db = connect()
+    appCl = db.App
+    reviewCl = db.Review
+    app_id = ObjectId(app_id)
+    
+
+    appData = appCl.find_one({ '_id': app_id })
+    print(appData["aspect_review"][aspect])
+    reviewData = list(reviewCl.find({"_id": {"$in": [ObjectId(x) for x in appData["aspect_review"][aspect]]}}))
+    print(reviewData)
+    returnData = [{
+        "review_id": str(x["_id"]),
+        "text": x["text"],
+        "sentiment": x["sentiment"]
+    } for x in reviewData]
+
+
+    return returnData

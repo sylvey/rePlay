@@ -1,6 +1,6 @@
 from crypt import methods
 from flask import Flask, jsonify, render_template
-from database import connect, getApps, getAppsContent, getSearchApps   #, getAppsByKeyword
+from database import connect, getAppAspect, getApps, getAppsContent, getSearchApps   #, getAppsByKeyword
 from bson.json_util import dumps
 from flask_cors import CORS
 
@@ -38,6 +38,12 @@ def apps():
 @app.route("/apps/content/<app_id>")
 def appsContent(app_id):
     data = getAppsContent(app_id)
+    return jsonify(data)
+
+@app.route("/apps/aspect/<app_id>/<aspect>")
+def appsAspect(app_id, aspect):
+    print(app_id, aspect)
+    data = getAppAspect(app_id, aspect)
     return jsonify(data)
 
 if __name__ == '__main__':
