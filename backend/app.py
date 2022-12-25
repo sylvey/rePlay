@@ -1,6 +1,6 @@
 from crypt import methods
 from flask import Flask, jsonify, render_template
-from database import connect, getApps, getAppsContent   #, getAppsByKeyword
+from database import connect, getApps, getAppsContent, getSearchApps   #, getAppsByKeyword
 from bson.json_util import dumps
 from flask_cors import CORS
 
@@ -14,6 +14,11 @@ CORS(app, resources={r"/.*": {"origins": ["*"]}})
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route("/apps/<keyword>", methods=['GET'])
+def appsSearch(keyword):
+    data = getSearchApps(keyword)
+    return jsonify(data)
 
 @app.route("/helloWorld", methods=['GET'])
 def helloWorld():
