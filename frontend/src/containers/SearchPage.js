@@ -12,9 +12,11 @@ const styledPaper = styled(Paper)`
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    //height: 100vh;
     width: 100%;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 `
 
 const SearchPage = () => {

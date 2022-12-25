@@ -13,9 +13,13 @@ const Wrapper = styled.div`
     overflow-y: auto;
     justify-content: center;
     text-align: center;
+    flex-direction: column;
 `
 
 const AppPage = () => {
+
+    const commentList = [1, 2, 3];
+
     return(
         <Wrapper>
             <div className="block">
@@ -26,7 +30,7 @@ const AppPage = () => {
                         <p className='number'>App 預測分數</p>
                     </div>
                 </div>
-                <div className="comments">
+                <div className="commentKeys">
                     <Button>面相評論</Button>
                     <Button>面相評論</Button>
                     <Button>面相評論</Button>
@@ -43,6 +47,24 @@ const AppPage = () => {
                         <Button className='keyword'>關鍵</Button>
                     </div>
                 </div>
+            </div>
+            <div className="commentList">
+                {
+                    commentList.map((item) => {
+                        return(
+                        
+                            <div className="comment">
+                                <div className="scoreContainer">
+                                    <div className="commentScoreFrame">
+                                        評論分數
+                                    </div>
+                                </div>
+                                <div className="contentContainer">評論內容</div>
+                            </div>
+                        
+                        )
+                    })
+                }
             </div>
         </Wrapper>   
     )
