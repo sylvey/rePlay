@@ -4,6 +4,8 @@ import starImg from './images/star.png';
 import '../css/searchPage.css';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { startSearch } from '../api';
 
 const Wrapper = styled.div`
     display: flex;
@@ -22,7 +24,24 @@ const Wrapper = styled.div`
 const numResults = [1, 2, 3]
 
 
-const Results = ({ setClickApp }) => {
+const Results = () => {
+
+    const navigate = useNavigate();
+
+    const navigateToApp = () => {
+        navigate('/app/:id')
+    }
+
+    const [apps, setApps] = useState([])
+
+    const getApp = async () => {
+        // get information of apps from DB
+        const response = await startSearch;
+        console.log('res', response)
+        setApps(response);
+    }
+    console.log(state);
+
     return(
         <Wrapper>
             {
@@ -45,7 +64,7 @@ const Results = ({ setClickApp }) => {
                                         <Button>負向評論</Button>
                                         <Button>負向評論</Button>
                                     </div>
-                                    <div className="rating" onClick={() => setClickApp(true)}>
+                                    <div className="rating" onClick={navigateToApp}>
                                         <p>查看評價🌟</p>
                                         {/* <img src={starImg} className='starImg'/> */}
                                     </div>
