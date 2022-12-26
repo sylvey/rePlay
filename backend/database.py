@@ -2,6 +2,8 @@ import pymongo
 from bson.objectid import ObjectId
 import re
 
+from predictApp import predict
+
 def connect():
     client = pymongo.MongoClient("mongodb+srv://mongodb:mongodb@cluster0.rcmouet.mongodb.net/?retryWrites=true&w=majority")
     db = client.rePlay
@@ -69,7 +71,7 @@ def getAppsContent(app_id):
         'keywords': [e['text'] for e in list(keyword.find({"_id": {"$in": [ObjectId(x) for x in data['keyword']]}}))],
     },
 
-    return returnData
+    return returnData[0]
 
 def getAppAspect(app_id, aspect):
     db = connect()
@@ -90,3 +92,22 @@ def getAppAspect(app_id, aspect):
 
 
     return returnData
+
+def getPrediction(review):
+    db = connect()
+    app = db.App
+    keyword = db.Keyword
+
+    name = predict(review)
+    data = app.find_one({ 'name': name })
+
+    returnData = {
+        'app_id': str(data['_id']),
+        'app_name': data['name'],
+        'app_image': data['image'], 
+        'app_category': data['category'], 
+        'rating': data['rating'],
+        'keywords': [e['text'] for e in list(keyword.find({"_id": {"$in": [ObjectId(x) for x in data['keyword']]}}))],
+    },
+
+    return returnData[0]
