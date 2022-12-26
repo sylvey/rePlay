@@ -16,3 +16,6 @@ pytz==2022.6
 six==1.16.0
 Werkzeug==2.2.2
 zipp==3.10.0
+keras-bert==0.89.0
+tensorflow==2.9.2
+scikit-learn==1.0.2

@@ -1,6 +1,6 @@
 from crypt import methods
-from flask import Flask, jsonify, render_template
-from database import connect, getAppAspect, getApps, getAppsContent, getSearchApps   #, getAppsByKeyword
+from flask import Flask, jsonify, render_template, request
+from database import connect, getAppAspect, getApps, getAppsContent, getSearchApps, getPrediction
 from bson.json_util import dumps
 from flask_cors import CORS
 
@@ -40,6 +40,13 @@ def appsAspect(app_id, aspect):
     print(app_id, aspect)
     data = getAppAspect(app_id, aspect)
     return jsonify(data)
+
+@app.route("/predict", methods=['POST'])
+def appsPredict():
+    data = request.get_json()
+    review = data['review']
+    return jsonify(getPrediction(review))
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 8000, debug=True)

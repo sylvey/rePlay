@@ -2,6 +2,8 @@ import pymongo
 from bson.objectid import ObjectId
 import re
 
+from predictApp import predict
+
 def connect():
     client = pymongo.MongoClient("mongodb+srv://mongodb:mongodb@cluster0.rcmouet.mongodb.net/?retryWrites=true&w=majority")
     db = client.rePlay
@@ -32,19 +34,24 @@ def getApps():
     app = db.App
     keyword = db.Keyword
 
-    data = list(app.find({}))
-
+    data = list(app.find(
+        {'$or': [
+            {"keyword.0": {"$exists": True}},
+            {"advantage.0": {"exists": True}},
+            {"disadvantage.0": {"exists": True}}
+        ]}
+    ))
+    
     returnData = [{
         "app_id": str(x["_id"]),
         "app_name": x["name"],
         "app_image": x["image"],
         "app_category": x['category'],
         "app_rating": x['rating'],
-        "advantage": [ keyword.find_one({"_id": ObjectId(y)})["text"] for y in x["advantage"] ],
-        "disadvantage": [ keyword.find_one({"_id": ObjectId(y)})["text"] for y in x["disadvantage"] ]
-    } for x in data]
+        "advantage": [e['text'] for e in list(keyword.find({"_id": {"$in": [ObjectId(y) for y in x['advantage']]}}))],
+        "disadvantage": [e['text'] for e in list(keyword.find({"_id": {"$in": [ObjectId(y) for y in x['disadvantage']]}}))]
+    } for x in data ]
 
-    print(returnData[10])
     return returnData
 
 def getAppsContent(app_id):
@@ -60,11 +67,11 @@ def getAppsContent(app_id):
         'app_name': data['name'],
         'app_image': data['image'], 
         'app_category': data['category'], 
-        'rating': data['rating'],
-        'keywords': [ keyword.find_one({"_id": ObjectId(y)})["text"] for y in data["keyword"] ],
+        'app_rating': data['rating'],
+        'keywords': [e['text'] for e in list(keyword.find({"_id": {"$in": [ObjectId(x) for x in data['keyword']]}}))],
     },
 
-    return returnData
+    return returnData[0]
 
 def getAppAspect(app_id, aspect):
     db = connect()
@@ -85,3 +92,22 @@ def getAppAspect(app_id, aspect):
 
 
     return returnData
+
+def getPrediction(review):
+    db = connect()
+    app = db.App
+    keyword = db.Keyword
+
+    name = predict(review)
+    data = app.find_one({ 'name': name })
+
+    returnData = {
+        'app_id': str(data['_id']),
+        'app_name': data['name'],
+        'app_image': data['image'], 
+        'app_category': data['category'], 
+        'app_rating': data['rating'],
+        'keywords': [e['text'] for e in list(keyword.find({"_id": {"$in": [ObjectId(x) for x in data['keyword']]}}))],
+    },
+
+    return returnData[0]
