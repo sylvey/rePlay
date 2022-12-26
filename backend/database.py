@@ -67,7 +67,7 @@ def getAppsContent(app_id):
         'app_name': data['name'],
         'app_image': data['image'], 
         'app_category': data['category'], 
-        'rating': data['rating'],
+        'app_rating': data['rating'],
         'keywords': [e['text'] for e in list(keyword.find({"_id": {"$in": [ObjectId(x) for x in data['keyword']]}}))],
     },
 
@@ -106,7 +106,7 @@ def getPrediction(review):
         'app_name': data['name'],
         'app_image': data['image'], 
         'app_category': data['category'], 
-        'rating': data['rating'],
+        'app_rating': data['rating'],
         'keywords': [e['text'] for e in list(keyword.find({"_id": {"$in": [ObjectId(x) for x in data['keyword']]}}))],
     },
 
