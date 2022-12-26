@@ -16,14 +16,14 @@ const InputContainer = styled.div`
     justify-content: center;
 `
 
-const HomePage = ({ setGoSearch }) => {
+const HomePage = () => {
 
     return(
         <Wrapper>
             <Title/>
             <InputContainer>
-                <Intro setClick={setGoSearch}/>
-                <Input/>
+                <Intro />
+                <Input />
             </InputContainer>
         </Wrapper>
     )

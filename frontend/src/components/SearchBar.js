@@ -11,11 +11,20 @@ const Wrapper = styled.div`
     font-size: 20px;
 `
 
-const SearchBar = () => {
+const SearchBar = ({ setSearchInput }) => {
+
+    const handleSearch = (value) => {
+        //console.log('handle search', value);
+        setSearchInput(value);
+    }
+
     return(
         <Wrapper>
             <h2>rePlay 🌟</h2>
-            <Input.Search placeholder="搜尋 APP" style={{ width: '60%' }}/>
+            <Input.Search 
+                placeholder="搜尋 APP" 
+                style={{ width: '60%' }}
+                onSearch={handleSearch}/>
         </Wrapper>
     )
 }

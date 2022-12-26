@@ -19,23 +19,13 @@ const Wrapper = styled.div`
 `
 
 const SearchPage = () => {
-    const { state } = useLocation();
-    const [apps, setApps] = useState([])
-
-    const getApp = async () => {
-        // get information of apps from DB
-        const response = await startSearch;
-        console.log('res', response)
-        setApps(response);
-    }
-    console.log(state);
-
     
+    const [searchInput, setSearchInput] = useState([])
     
     return (
         <Wrapper>
-            <SearchBar/>
-            <Results/>
+            <SearchBar setSearchInput={setSearchInput}/>
+            <Results searchInput={searchInput}/>
         </Wrapper>
     )
 
