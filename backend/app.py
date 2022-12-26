@@ -15,6 +15,11 @@ CORS(app, resources={r"/.*": {"origins": ["*"]}})
 def index():
     return render_template('index.html')
 
+@app.route("/apps", methods=["GET"])
+def apps():
+    data = getApps()
+    return jsonify(data)
+
 @app.route("/apps/<keyword>", methods=['GET'])
 def appsSearch(keyword):
     data = getSearchApps(keyword)
@@ -24,11 +29,6 @@ def appsSearch(keyword):
 def helloWorld():
     conn = connect()
     return 'hello world'
-
-@app.route("/apps", methods=["GET"])
-def apps():
-    data = getApps()
-    return dumps(data)
 
 @app.route("/apps/content/<app_id>")
 def appsContent(app_id):

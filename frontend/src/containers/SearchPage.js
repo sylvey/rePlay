@@ -1,44 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import Paper from '@material-ui/core/Paper';
-import SearchBar from '../components/SearchBar';
-import Results from '../components/Results';
-import AppPage from './AppPage';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { startSearch } from '../api';
-
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import Paper from "@material-ui/core/Paper";
+import SearchBar from "../components/SearchBar";
+import Results from "../components/Results";
+import AppPage from "./AppPage";
+import { useNavigate, useLocation } from "react-router-dom";
+import { startSearch, searchKeyword } from "../api";
 
 const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    //height: 100vh;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-`
+  display: flex;
+  flex-direction: column;
+  //height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
 
 const SearchPage = () => {
-    
-    const [searchInput, setSearchInput] = useState([])
-    
-    return (
-        <Wrapper>
-            <SearchBar setSearchInput={setSearchInput}/>
-            <Results searchInput={searchInput}/>
-        </Wrapper>
-    )
+  const [searchInput, setSearchInput] = useState("");
 
+  const navigate = useNavigate();
 
+  const navigateToApp = () => {
+    navigate("/app/:id");
+  };
 
+  const [apps, setApps] = useState([]);
 
-    // const [clickApp, setClickApp] = useState(false);
-    // return(
-    //     <Wrapper>
-    //         <SearchBar/>
-    //         {clickApp ? <AppPage/> : <Results setClickApp={setClickApp}/>}
-    //     </Wrapper>
-    // )
-}
+  useEffect(() => {
+    const asyncfunction = async () => {
+      const data = await startSearch();
+      console.log("data", data);
+      setApps(data);
+    };
+    asyncfunction();
+  }, []);
+
+  const handleSearch = (value) => {
+    const asyncfunction = async () => {
+      const dataKeyword = await searchKeyword(searchInput);
+      setApps(dataKeyword);
+    };
+    asyncfunction();
+  };
+
+  return (
+    <Wrapper>
+      <SearchBar
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        handleSearch={handleSearch}
+      />
+      <Results apps={apps} navigateToApp={navigateToApp} />
+    </Wrapper>
+  );
+};
 
 export default SearchPage;

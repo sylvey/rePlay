@@ -1,27 +1,24 @@
-import axios from 'axios'
+import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://127.0.0.1:8000'
-})
+  baseURL: "http://127.0.0.1:8000",
+});
+instance.interceptors.response.use(
+  (response) => response,
+  (error) => Promise.reject(error.response)
+);
 
-const startSearch = async() => {
-    try {
-        const data = await instance.get('/apps')
-        console.log('api data: ', data.data);
-        return data
-    } catch (error) {
-        throw new Error('Failed to get apps data' + error)
-    }
-}
+const startSearch = async () => {
+  return await instance.get("/apps").then((res) => {
+    return res.data;
+  });
+};
 
-const searchKeyword = async(keyword) => {
-    try {
-        const data = await instance.get(`/apps/${keyword}`)
-        console.log('search keyword : ', keyword + data);
-        return data
-    } catch (error) {
-        throw new Error('Failed to get seaching keyword data')
-    }
-}
+const searchKeyword = async (keyword) => {
+  return await instance.get(`/apps/${keyword}`).then((res) => {
+    console.log("resdata", res.data);
+    return res.data;
+  });
+};
 
-export { startSearch, searchKeyword }
+export { startSearch, searchKeyword };
