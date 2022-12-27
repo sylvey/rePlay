@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import img from '../components/images/godwawa.JPG';
 import '../css/appPage.css';
 import { Button, Tooltip } from 'antd';
 import { getAppContent, getAppAspect } from '../api';
