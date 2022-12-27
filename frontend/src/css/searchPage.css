@@ -2,7 +2,7 @@
     margin: 2em;
     display: block;
     width: 290px;
-    height: 380px;
+    height: auto;
     /* background-color: antiquewhite; */
     border-radius: 10px;
     background: #eeeeee52;
@@ -30,33 +30,40 @@
     padding: 0.5em;
     text-align: left;
     width: 270px;
+    height: auto;
     color: black;
 }
 
 .resInfo .title {
-    display: block;
+    display: flex;
     justify-content: center;
+    width: auto;
     height: auto;
     flex-direction: column;
     padding: 2px;
+    align-items: baseline;
 }
 
 .resInfo .title .name {
-    width: 55%;
+    width: 100%;
     font-size: 25px;
     padding: 5px;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin: 10px;
 }
 
 .resInfo .title .comments {
     display: flex;
     justify-content: space-around;
-    margin: 5px;
+    margin: 2px;
+}
+
+.resInfo .title .comments Button {
+    margin: 4px;
 }
 
 .resInfo .title .rating {
     display: flex;
+    width: 90%;
     align-items: center;
     padding: 5px;
     border: 3px dashed rgba(0, 0, 0, 0.061);
