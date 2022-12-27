@@ -24,7 +24,6 @@ const Wrapper = styled.div`
 const AppPage = () => {
     const { state } = useLocation()
     //console.log('state', state);
-    const commentList = [1, 2, 3];
 
     const [appContent, setAppContent] = useState([])
     const [keywords, setKeywords] = useState([])

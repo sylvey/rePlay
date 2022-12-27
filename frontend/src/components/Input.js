@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { getPredictApp } from '../api';
 
 const Wrapper = styled.div`
     width: 30%;
@@ -27,9 +28,11 @@ const InputComment = () => {
         })
     }
 
-    // const handlePrediction = (input) => {
-
-    // }
+    const handlePrediction = async(input) => {
+        const result = await getPredictApp(input);
+        console.log('predicted result', result);
+        navigateToApp(result.app_id);
+    }
     
 
     return (
@@ -38,7 +41,7 @@ const InputComment = () => {
             <p>想尋找某種特性的APP卻又毫無頭緒，請輸入一段評論讓我們幫你找到最適配的 App！</p>
             <Input.Search
                 placeholder="輸入你的評論"
-                onSearch={}
+                onSearch={handlePrediction}
                 style={{
                     width: 200,
                 }}

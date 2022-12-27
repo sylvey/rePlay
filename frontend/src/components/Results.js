@@ -27,7 +27,7 @@ const Results = ({ apps, navigateToApp }) => {
         apps.map((item) => (
           <>
             <div className="resBlock" key={item.app_id}>
-              <div className="resImgContainer">
+              <div className="resImgContainer" key={item.app_id}>
                 <img className="resImg" src={item.app_image} />
               </div>
               <div className="resInfo">

@@ -34,6 +34,11 @@ const getAppAspect = async(appID, aspect) => {
   })
 }
 
+const getPredictApp = async(review) => {
+  return await instance.post(`/predict`, { review }).then((res) => {
+    console.log('predict response', res.data);
+    return res.data;
+  })
+}
 
-
-export { startSearch, searchKeyword, getAppContent, getAppAspect };
+export { startSearch, searchKeyword, getAppContent, getAppAspect, getPredictApp };
