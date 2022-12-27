@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import img from '../components/images/godwawa.JPG';
 import '../css/appPage.css';
 import { Button } from 'antd';
-import { getAppContent } from '../api';
+import { getAppContent, getAppAspect } from '../api';
 import { useLocation } from 'react-router-dom';
 
 
@@ -28,16 +28,28 @@ const AppPage = () => {
 
     const [appContent, setAppContent] = useState([])
     const [keywords, setKeywords] = useState([])
+    const [comments, setComments] = useState([])
+
+    const handleClickAspect = (aspect) => {
+        setComments([]);
+        const getAspect = async(aspect) => {
+            let com = await getAppAspect(state.id, aspect);
+            setComments(com);
+            console.log('comments', com);
+        }
+        getAspect(aspect);
+    }
 
     useEffect(() => {
         const getContent = async() => {
             let content = await getAppContent(state.id);
             setAppContent(content);
-            setKeywords(content.keywords)
+            setKeywords(content.keywords);
             console.log(content);
         }
         getContent();
     }, []);
+
 
     return(
         <Wrapper>
@@ -50,10 +62,10 @@ const AppPage = () => {
                     </div>
                 </div>
                 <div className="commentKeys">
-                    <Button>Update</Button>
-                    <Button>Watch</Button>
-                    <Button>Game Info</Button>
-                    <Button>Other</Button>
+                    <Button onClick={ () => {handleClickAspect('update')} }>Update</Button>
+                    <Button onClick={ () => {handleClickAspect('watch')} }>Watch</Button>
+                    <Button onClick={ () => {handleClickAspect('gameInfo')} }>Game Info</Button>
+                    <Button onClick={ () => {handleClickAspect('otherContent')} }>Other</Button>
                 </div>
                 <div className="keywordsFrame">
                     <div className="keywords">
@@ -67,16 +79,15 @@ const AppPage = () => {
             </div>
             <div className="commentList">
                 {
-                    commentList.map((item) => {
+                    comments.map((item) => {
                         return(
-                        
-                            <div className="comment">
+                            <div className="comment" key={ item.review_id }>
                                 <div className="scoreContainer">
                                     <div className="commentScoreFrame">
-                                        評論分數
+                                        { item.sentiment }
                                     </div>
                                 </div>
-                                <div className="contentContainer">評論內容</div>
+                                <div className="contentContainer">{ item.text }</div>
                             </div>
                         
                         )
