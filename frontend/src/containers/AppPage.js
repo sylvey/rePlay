@@ -1,7 +1,11 @@
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import img from '../components/images/godwawa.JPG';
 import '../css/appPage.css';
 import { Button } from 'antd';
+import { getAppContent } from '../api';
+import { useLocation } from 'react-router-dom';
+
 
 const Wrapper = styled.div`
     display: flex;
@@ -18,17 +22,31 @@ const Wrapper = styled.div`
 `
 
 const AppPage = () => {
-
+    const { state } = useLocation()
+    //console.log('state', state);
     const commentList = [1, 2, 3];
+
+    const [appContent, setAppContent] = useState([])
+    const [keywords, setKeywords] = useState([])
+
+    useEffect(() => {
+        const getContent = async() => {
+            let content = await getAppContent(state.id);
+            setAppContent(content);
+            setKeywords(content.keywords)
+            console.log(content);
+        }
+        getContent();
+    }, []);
 
     return(
         <Wrapper>
             <div className="block">
                 <div className="basic-info">
-                    <h5 className="name"> GodWaWa </h5>
-                    <img src={img} className='appImg' />
+                    <h5 className="name"> {appContent.app_name} </h5>
+                    <img src={appContent.app_image} className='appImg' />
                     <div className="scoreFrame">
-                        <p className='number'>App 預測分數</p>
+                        <p className='number'>{appContent.app_rating}</p>
                     </div>
                 </div>
                 <div className="commentKeys">
@@ -36,16 +54,14 @@ const AppPage = () => {
                     <Button>面相評論</Button>
                     <Button>面相評論</Button>
                     <Button>面相評論</Button>
-                    <Button>面相評論</Button>
                 </div>
                 <div className="keywordsFrame">
                     <div className="keywords">
-                        <Button className='keyword'>關鍵</Button>
-                        <Button className='keyword'>關鍵</Button>
-                        <Button className='keyword'>關鍵</Button>
-                        <Button className='keyword'>關鍵</Button>
-                        <Button className='keyword'>關鍵</Button>
-                        <Button className='keyword'>關鍵</Button>
+                        {
+                            keywords.map((kw, idx) => {
+                                return <Button className='keyword' key={idx}> {kw} </Button>
+                            })
+                        }
                     </div>
                 </div>
             </div>

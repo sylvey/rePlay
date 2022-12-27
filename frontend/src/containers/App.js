@@ -21,12 +21,6 @@ const styledPaper = styled(Paper)`
 `
 
 function App() {
-  // const [goSearch, setGoSearch] = useState(false)
-
-  // return (<>
-  //     {goSearch ? <SearchPage/> : <HomePage setGoSearch={setGoSearch}/>}
-  //     </>
-  // );
   return (
     <Router>
       <Routes>

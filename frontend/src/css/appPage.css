@@ -1,8 +1,8 @@
 .block {
     margin: 2em;
     display: flex;
-    width: 600px;
-    height: 350px;
+    width: 80%;
+    height: auto;
     flex-direction: column;
     /* background-color: cornflowerblue; */
     /* background-color: antiquewhite; */
@@ -20,6 +20,7 @@
 
 .name {
     font-size: 30px;
+    width: 20%;
     /* font-family: "Gill Sans", sans-serif; */
 }
 
@@ -42,6 +43,7 @@
 .scoreFrame p {
     display: block;
     font-family: "Gill Sans", sans-serif;
+    font-size: 50px;
 }
 
 .commentKeys {

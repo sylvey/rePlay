@@ -16,9 +16,22 @@ const startSearch = async () => {
 
 const searchKeyword = async (keyword) => {
   return await instance.get(`/apps/${keyword}`).then((res) => {
-    console.log("resdata", res.data);
+    console.log("search keyword resdata", res.data);
     return res.data;
   });
 };
 
-export { startSearch, searchKeyword };
+const getAppContent = async(appID) => {
+  return await instance.get(`/apps/content/${appID}`).then((res) => {
+    //console.log('get app data res', res.data);
+    return res.data;
+  })
+}
+
+const getAppAspect = async(appID, aspect) => {
+  return await instance.get(`/apps/aspect/${appID}/${aspect}`).then((res => {
+    return res.data;
+  }))
+}
+
+export { startSearch, searchKeyword, getAppContent, getAppAspect };

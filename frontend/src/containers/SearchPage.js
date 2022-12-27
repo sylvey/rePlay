@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Paper from "@material-ui/core/Paper";
 import SearchBar from "../components/SearchBar";
 import Results from "../components/Results";
-import AppPage from "./AppPage";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { startSearch, searchKeyword } from "../api";
 
 const Wrapper = styled.div`
@@ -22,16 +20,21 @@ const SearchPage = () => {
 
   const navigate = useNavigate();
 
-  const navigateToApp = () => {
-    navigate("/app/:id");
+  const navigateToApp = async(id) => {
+    navigate(`/app/:${id}`,{
+        state: {
+            id: id
+        }
+    });
   };
+
 
   const [apps, setApps] = useState([]);
 
   useEffect(() => {
     const asyncfunction = async () => {
       const data = await startSearch();
-      console.log("data", data);
+      //console.log("data", data);
       setApps(data);
     };
     asyncfunction();
@@ -39,8 +42,9 @@ const SearchPage = () => {
 
   const handleSearch = (value) => {
     const asyncfunction = async () => {
-      const dataKeyword = await searchKeyword(searchInput);
-      setApps(dataKeyword);
+        const dataKeyword = await searchKeyword(value);
+        console.log('search data: ', dataKeyword);
+        setApps(dataKeyword);
     };
     asyncfunction();
   };
@@ -52,7 +56,10 @@ const SearchPage = () => {
         setSearchInput={setSearchInput}
         handleSearch={handleSearch}
       />
-      <Results apps={apps} navigateToApp={navigateToApp} />
+      <Results 
+        apps={apps} 
+        navigateToApp={navigateToApp} 
+        />
     </Wrapper>
   );
 };
