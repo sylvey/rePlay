@@ -19,9 +19,17 @@ const InputComment = () => {
 
     const navigate = useNavigate();
 
-    const navigateToApp = () => {
-        navigate('/app/:id')
+    const navigateToApp = (id) => {
+        navigate(`/app/:${id}`, {
+            state: {
+                id: id
+            }
+        })
     }
+
+    // const handlePrediction = (input) => {
+
+    // }
     
 
     return (
@@ -30,7 +38,7 @@ const InputComment = () => {
             <p>想尋找某種特性的APP卻又毫無頭緒，請輸入一段評論讓我們幫你找到最適配的 App！</p>
             <Input.Search
                 placeholder="輸入你的評論"
-                onSearch={navigateToApp}
+                onSearch={}
                 style={{
                     width: 200,
                 }}
