@@ -13,6 +13,7 @@ def getSearchApps(keyword):
     db = connect()
     appCl = db.App
     data = list(appCl.find({'name':{'$regex':keyword}}))
+    keywordCl = db.Keyword
 
     returnData = [{
         "app_id": str(x["_id"]),
@@ -20,8 +21,8 @@ def getSearchApps(keyword):
         "app_image": x["image"], 
         "app_category": x['category'], 
         "app_rating": x['rating'],
-        "advantage": [ keyword.find_one({"_id": ObjectId(y)})["text"] for y in x["advantage"] ],
-        "disadvantage": [ keyword.find_one({"_id": ObjectId(y)})["text"] for y in x["disadvantage"] ]
+        "advantage": [ keywordCl.find_one({"_id": ObjectId(y)})["text"] for y in x["advantage"] ],
+        "disadvantage": [ keywordCl.find_one({"_id": ObjectId(y)})["text"] for y in x["disadvantage"] ]
     } for x in data]
 
     
@@ -57,7 +58,7 @@ def getApps():
 def getAppsContent(app_id):
     db = connect()
     app = db.App
-    keyword = db.Keyword
+    keywordCl = db.Keyword
     app_id = ObjectId(app_id)
 
     data = app.find_one({ '_id': app_id })
@@ -68,7 +69,7 @@ def getAppsContent(app_id):
         'app_image': data['image'], 
         'app_category': data['category'], 
         'app_rating': data['rating'],
-        'keywords': [e['text'] for e in list(keyword.find({"_id": {"$in": [ObjectId(x) for x in data['keyword']]}}))],
+        'keywords': [e['text'] for e in list(keywordCl.find({"_id": {"$in": [ObjectId(x) for x in data['keyword']]}}))],
     },
 
     return returnData[0]
@@ -96,7 +97,7 @@ def getAppAspect(app_id, aspect):
 def getPrediction(review):
     db = connect()
     app = db.App
-    keyword = db.Keyword
+    keywordCl = db.Keyword
 
     name = predict(review)
     data = app.find_one({ 'name': name })
@@ -107,7 +108,7 @@ def getPrediction(review):
         'app_image': data['image'], 
         'app_category': data['category'], 
         'app_rating': data['rating'],
-        'keywords': [e['text'] for e in list(keyword.find({"_id": {"$in": [ObjectId(x) for x in data['keyword']]}}))],
+        'keywords': [e['text'] for e in list(keywordCl.find({"_id": {"$in": [ObjectId(x) for x in data['keyword']]}}))],
     },
 
     return returnData[0]
