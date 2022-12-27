@@ -50,10 +50,10 @@ const AppPage = () => {
                     </div>
                 </div>
                 <div className="commentKeys">
-                    <Button>面相評論</Button>
-                    <Button>面相評論</Button>
-                    <Button>面相評論</Button>
-                    <Button>面相評論</Button>
+                    <Button>Update</Button>
+                    <Button>Watch</Button>
+                    <Button>Game Info</Button>
+                    <Button>Other</Button>
                 </div>
                 <div className="keywordsFrame">
                     <div className="keywords">

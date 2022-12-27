@@ -29,9 +29,9 @@ const getAppContent = async(appID) => {
 }
 
 const getAppAspect = async(appID, aspect) => {
-  return await instance.get(`/apps/aspect/${appID}/${aspect}`).then((res => {
+  return await instance.get(`/apps/aspect/${appID}/${aspect}`).then((res) => {
     return res.data;
-  }))
+  })
 }
 
 export { startSearch, searchKeyword, getAppContent, getAppAspect };
