@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   margin-top: 2em;
   position: relative;
-  width: 100%;
+  //width: 100%;
   height: 100vh;
   padding: 3em;
   overflow-y: auto;

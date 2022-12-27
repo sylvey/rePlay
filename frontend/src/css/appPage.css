@@ -1,3 +1,12 @@
+.websiteLogo {
+    display: flex;
+    font-size: 25px;
+}
+
+.websiteLogo:hover {
+    cursor: pointer;
+}
+
 .block {
     margin: 2em;
     display: flex;
