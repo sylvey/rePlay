@@ -1,4 +1,4 @@
-import { Input } from "antd";
+import { Input, Tooltip } from "antd";
 import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -26,7 +26,9 @@ const SearchBar = ({ setSearchInput, searchInput, handleSearch }) => {
 
   return (
     <Wrapper>
-      <h2 onClick={() => backToHomepage()} className='title'>rePlay 🌟</h2>
+      <Tooltip title='To Homepage'>
+        <h2 onClick={() => backToHomepage()} className='title'>rePlay 🌟</h2>
+      </Tooltip>
       <Input.Search
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
