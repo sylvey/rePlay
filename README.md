@@ -1,4 +1,6 @@
 # rePlay
+## Intro
+This website analysis google play reviews. User can quickly look into the review highlight of several apps. 
 
 ## frontend
 
